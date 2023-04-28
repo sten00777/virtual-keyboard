@@ -1,1 +1,1 @@
-const SECTION = document.createElement("section");
+const SECTION = document.createElement('section');
