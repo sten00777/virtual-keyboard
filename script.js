@@ -3,6 +3,8 @@ const MAIN = document.createElement('main');
 const SECTION = document.createElement('section');
 const TEXT_AREA = document.createElement('textarea');
 const KEY_BOARD = document.createElement('div');
+const TITLE = document.createElement('h1');
+const INFO = document.createElement('p');
 
 class KeyButtons {
   constructor() {
@@ -74,153 +76,268 @@ class KeyButtons {
 
     this.keycodes = [
       [
-        { code: '`', keyen: '~', keyEn: '~', keyru: 'ё', keyRu: 'ё' },
-        { code: '1', keyen: '1', keyEn: '1', keyru: '1', keyRu: '1' },
-        { code: '2', keyen: '2', keyEn: '2', keyru: '2', keyRu: '2' },
-        { code: '3', keyen: '3', keyEn: '3', keyru: '3', keyRu: '3' },
-        { code: '4', keyen: '4', keyEn: '4', keyru: '4', keyRu: '4' },
-        { code: '5', keyen: '5', keyEn: '5', keyru: '5', keyRu: '5' },
-        { code: '6', keyen: '6', keyEn: '6', keyru: '6', keyRu: '6' },
-        { code: '7', keyen: '7', keyEn: '7', keyru: '7', keyRu: '7' },
-        { code: '8', keyen: '8', keyEn: '8', keyru: '8', keyRu: '8' },
-        { code: '9', keyen: '9', keyEn: '9', keyru: '9', keyRu: '9' },
-        { code: '0', keyen: '0', keyEn: '0', keyru: '0', keyRu: '0' },
-        { code: '-', keyen: '-', keyEn: '-', keyru: '-', keyRu: '-' },
-        { code: '=', keyen: '=', keyEn: '=', keyru: '=', keyRu: '=' },
         {
-          code: 'BACKSPACE',
-          keyen: 'BACKSPACE',
-          keyEn: 'BACKSPACE',
-          keyru: 'BACKSPACE',
-          keyRu: 'BACKSPACE',
-        },],
+          code: 'Backquote', keyen: '`', keyEn: '~', keyru: 'ё', keyRu: 'Ё',
+        },
+        {
+          code: 'Digit1', keyen: '1', keyEn: '!', keyru: '1', keyRu: '!',
+        },
+        {
+          code: 'Digit2', keyen: '2', keyEn: '@', keyru: '2', keyRu: '"',
+        },
+        {
+          code: 'Digit3', keyen: '3', keyEn: '#', keyru: '3', keyRu: '№',
+        },
+        {
+          code: 'Digit4', keyen: '4', keyEn: '$', keyru: '4', keyRu: ';',
+        },
+        {
+          code: 'Digit5', keyen: '5', keyEn: '%', keyru: '5', keyRu: '%',
+        },
+        {
+          code: 'Digit6', keyen: '6', keyEn: '^', keyru: '6', keyRu: ':',
+        },
+        {
+          code: 'Digit7', keyen: '7', keyEn: '&', keyru: '7', keyRu: '?',
+        },
+        {
+          code: 'Digit8', keyen: '8', keyEn: '*', keyru: '8', keyRu: '*',
+        },
+        {
+          code: 'Digit9', keyen: '9', keyEn: '(', keyru: '9', keyRu: '(',
+        },
+        {
+          code: 'Digit0', keyen: '0', keyEn: ')', keyru: '0', keyRu: ')',
+        },
+        {
+          code: 'Minus', keyen: '-', keyEn: '_', keyru: '-', keyRu: '_',
+        },
+        {
+          code: 'Equal', keyen: '=', keyEn: '+', keyru: '=', keyRu: '+',
+        },
+        {
+          code: 'Backspace',
+          keyen: 'Backspace',
+          keyEn: 'Backspace',
+          keyru: 'Backspace',
+          keyRu: 'Backspace',
+        }],
       [
-        { code: 'TAB', keyen: 'TAB', keyEn: 'TAB', keyru: 'TAB', keyRu: 'TAB' },
-        { code: 'q', keyen: 'q', keyEn: 'Q', keyru: 'й', keyRu: 'Й' },
-        { code: 'w', keyen: 'w', keyEn: 'W', keyru: 'ц', keyRu: 'Ц' },
-        { code: 'e', keyen: 'e', keyEn: 'E', keyru: 'у', keyRu: 'У' },
-        { code: 'r', keyen: 'r', keyEn: 'R', keyru: 'к', keyRu: 'К' },
-        { code: 't', keyen: 't', keyEn: 'T', keyru: 'е', keyRu: 'Е' },
-        { code: 'y', keyen: 'y', keyEn: 'Y', keyru: 'н', keyRu: 'Н' },
-        { code: 'u', keyen: 'u', keyEn: 'U', keyru: 'г', keyRu: 'Г' },
-        { code: 'i', keyen: 'i', keyEn: 'I', keyru: 'ш', keyRu: 'Ш' },
-        { code: 'o', keyen: 'o', keyEn: 'O', keyru: 'щ', keyRu: 'Щ' },
-        { code: 'p', keyen: 'p', keyEn: 'P', keyru: 'з', keyRu: 'З' },
-        { code: '[', keyen: '[', keyEn: '[', keyru: 'х', keyRu: 'Х' },
-        { code: ']', keyen: ']', keyEn: ']', keyru: 'ъ', keyRu: 'Ъ' },
         {
-          code: '/'.match(/\//),
-          keyen: '/'.match(/\//),
-          keyEn: '/'.match(/\//),
-          keyru: '/'.match(/\//),
-          keyRu: '/'.match(/\//),
-        },],
+          code: 'Tab', keyen: 'Tab', keyEn: 'Tab', keyru: 'Tab', keyRu: 'Tab',
+        },
+        {
+          code: 'KeyQ', keyen: 'q', keyEn: 'Q', keyru: 'й', keyRu: 'Й',
+        },
+        {
+          code: 'KeyW', keyen: 'w', keyEn: 'W', keyru: 'ц', keyRu: 'Ц',
+        },
+        {
+          code: 'KeyE', keyen: 'e', keyEn: 'E', keyru: 'у', keyRu: 'У',
+        },
+        {
+          code: 'KeyR', keyen: 'r', keyEn: 'R', keyru: 'к', keyRu: 'К',
+        },
+        {
+          code: 'KeyT', keyen: 't', keyEn: 'T', keyru: 'е', keyRu: 'Е',
+        },
+        {
+          code: 'KeyY', keyen: 'y', keyEn: 'Y', keyru: 'н', keyRu: 'Н',
+        },
+        {
+          code: 'KeyU', keyen: 'u', keyEn: 'U', keyru: 'г', keyRu: 'Г',
+        },
+        {
+          code: 'KeyI', keyen: 'i', keyEn: 'I', keyru: 'ш', keyRu: 'Ш',
+        },
+        {
+          code: 'KeyO', keyen: 'o', keyEn: 'O', keyru: 'щ', keyRu: 'Щ',
+        },
+        {
+          code: 'KeyP', keyen: 'p', keyEn: 'P', keyru: 'з', keyRu: 'З',
+        },
+        {
+          code: 'BracketLeft', keyen: '[', keyEn: '{', keyru: 'х', keyRu: 'Х',
+        },
+        {
+          code: 'BracketRight', keyen: ']', keyEn: '}', keyru: 'ъ', keyRu: 'Ъ',
+        },
+        {
+          code: 'Backslash',
+          keyen: '\/',
+          keyEn: '|',
+          keyru: '\\',
+          keyRu: '\/',
+        },
+        {
+          code: 'Delete', keyen: 'Del', keyEn: 'Del', keyru: 'Del', keyRu: 'Del',
+        }],
       [{
-        code: 'CAPSLOCK',
-        keyen: 'CAPSLOCK',
-        keyEn: 'CAPSLOCK',
-        keyru: 'CAPSLOCK',
-        keyRu: 'CAPSLOCK',
+        code: 'CapsLock',
+        keyen: 'CapsLock',
+        keyEn: 'CapsLock',
+        keyru: 'CapsLock',
+        keyRu: 'CapsLock',
       },
-      { code: 'a', keyen: 'a', keyEn: 'A', keyru: 'ф', keyRu: 'Ф' },
-      { code: 's', keyen: 's', keyEn: 'S', keyru: 'ы', keyRu: 'Ы' },
-      { code: 'd', keyen: 'd', keyEn: 'D', keyru: 'в', keyRu: 'В' },
-      { code: 'f', keyen: 'f', keyEn: 'F', keyru: 'а', keyRu: 'А' },
-      { code: 'g', keyen: 'g', keyEn: 'G', keyru: 'п', keyRu: 'П' },
-      { code: 'h', keyen: 'h', keyEn: 'H', keyru: 'р', keyRu: 'Р' },
-      { code: 'j', keyen: 'j', keyEn: 'J', keyru: 'о', keyRu: 'О' },
-      { code: 'k', keyen: 'k', keyEn: 'K', keyru: 'л', keyRu: 'Л' },
-      { code: 'l', keyen: 'l', keyEn: 'L', keyru: 'д', keyRu: 'Д' },
-      { code: ';', keyen: ';', keyEn: ';', keyru: 'ж', keyRu: 'Ж' },
-      { code: '""', keyen: '""', keyEn: '""', keyru: 'э', keyRu: 'Э' },
       {
-        code: 'ENTER',
-        keyen: 'ENTER',
-        keyEn: 'ENTER',
-        keyru: 'ENTER',
-        keyRu: 'ENTER',
-      },],
-      [ {
-        code: 'SHIFT',
-        keyen: 'SHIFT',
-        keyEn: 'SHIFT',
-        keyru: 'SHIFT',
-        keyRu: 'SHIFT',
+        code: 'KeyA', keyen: 'a', keyEn: 'A', keyru: 'ф', keyRu: 'Ф',
       },
-      { code: 'z', keyen: 'z', keyEn: 'Z', keyru: 'я', keyRu: 'Я' },
-      { code: 'x', keyen: 'x', keyEn: 'X', keyru: 'ч', keyRu: 'Ч' },
-      { code: 'c', keyen: 'c', keyEn: 'C', keyru: 'с', keyRu: 'С' },
-      { code: 'v', keyen: 'v', keyEn: 'V', keyru: 'м', keyRu: 'М' },
-      { code: 'b', keyen: 'b', keyEn: 'B', keyru: 'и', keyRu: 'И' },
-      { code: 'n', keyen: 'n', keyEn: 'N', keyru: 'т', keyRu: 'Т' },
-      { code: 'm', keyen: 'm', keyEn: 'M', keyru: 'ь', keyRu: 'Ь' },
-      { code: ',', keyen: ',', keyEn: ',', keyru: 'б', keyRu: 'Б' },
-      { code: '.', keyen: '.', keyEn: '.', keyru: 'ю', keyRu: 'Ю' },
-      { code: '/', keyen: '/', keyEn: '/', keyru: ',', keyRu: ',' },
       {
-        code: 'SHIFT',
-        keyen: 'SHIFT',
-        keyEn: 'SHIFT',
-        keyru: 'SHIFT',
-        keyRu: 'SHIFT',
-      },],
+        code: 'KeyS', keyen: 's', keyEn: 'S', keyru: 'ы', keyRu: 'Ы',
+      },
+      {
+        code: 'KeyD', keyen: 'd', keyEn: 'D', keyru: 'в', keyRu: 'В',
+      },
+      {
+        code: 'KeyF', keyen: 'f', keyEn: 'F', keyru: 'а', keyRu: 'А',
+      },
+      {
+        code: 'KeyG', keyen: 'g', keyEn: 'G', keyru: 'п', keyRu: 'П',
+      },
+      {
+        code: 'KeyH', keyen: 'h', keyEn: 'H', keyru: 'р', keyRu: 'Р',
+      },
+      {
+        code: 'KeyJ', keyen: 'j', keyEn: 'J', keyru: 'о', keyRu: 'О',
+      },
+      {
+        code: 'KeyK', keyen: 'k', keyEn: 'K', keyru: 'л', keyRu: 'Л',
+      },
+      {
+        code: 'KeyL', keyen: 'l', keyEn: 'L', keyru: 'д', keyRu: 'Д',
+      },
+      {
+        code: 'Semicolon', keyen: ';', keyEn: ':', keyru: 'ж', keyRu: 'Ж',
+      },
+      {
+        code: 'Quote', keyen: '\'', keyEn: '"', keyru: 'э', keyRu: 'Э',
+      },
+      {
+        code: 'Enter',
+        keyen: 'Enter',
+        keyEn: 'Enter',
+        keyru: 'Enter',
+        keyRu: 'Enter',
+      }],
+      [{
+        code: 'ShiftLeft',
+        keyen: 'Shift',
+        keyEn: 'Shift',
+        keyru: 'Shift',
+        keyRu: 'Shift',
+      },
+      {
+        code: 'KeyZ', keyen: 'z', keyEn: 'Z', keyru: 'я', keyRu: 'Я',
+      },
+      {
+        code: 'KeyX', keyen: 'x', keyEn: 'X', keyru: 'ч', keyRu: 'Ч',
+      },
+      {
+        code: 'KeyC', keyen: 'c', keyEn: 'C', keyru: 'с', keyRu: 'С',
+      },
+      {
+        code: 'KeyV', keyen: 'v', keyEn: 'V', keyru: 'м', keyRu: 'М',
+      },
+      {
+        code: 'KeyB', keyen: 'b', keyEn: 'B', keyru: 'и', keyRu: 'И',
+      },
+      {
+        code: 'KeyN', keyen: 'n', keyEn: 'N', keyru: 'т', keyRu: 'Т',
+      },
+      {
+        code: 'KeyM', keyen: 'm', keyEn: 'M', keyru: 'ь', keyRu: 'Ь',
+      },
+      {
+        code: 'Comma', keyen: ',', keyEn: '<', keyru: 'б', keyRu: 'Б',
+      },
+      {
+        code: 'Period', keyen: '.', keyEn: '>', keyru: 'ю', keyRu: 'Ю',
+      },
+      {
+        code: 'Slash', keyen: '/', keyEn: '?', keyru: '.', keyRu: ',',
+      },
+      {
+        code: 'ArrowUp', keyen: '🡡', keyEn: '🡡', keyru: '🡡', keyRu: '🡡',
+      },
+      {
+        code: 'ShiftRight',
+        keyen: 'Shift',
+        keyEn: 'Shift',
+        keyru: 'Shift',
+        keyRu: 'Shift',
+      }],
       [
         {
-          code: 'CTRL',
-          keyen: 'CTRL',
-          keyEn: 'CTRL',
-          keyru: 'CTRL',
-          keyRu: 'CTRL',
+          code: 'ControlLeft',
+          keyen: 'Ctrl',
+          keyEn: 'Ctrl',
+          keyru: 'Ctrl',
+          keyRu: 'Ctrl',
         },
         {
-          code: 'window',
-          keyen: 'window',
-          keyEn: 'window',
-          keyru: 'window',
-          keyRu: 'window',
+          code: 'MetaLeft',
+          keyen: 'Win',
+          keyEn: 'Win',
+          keyru: 'Win',
+          keyRu: 'Win',
         },
-        { code: 'ALT', keyen: 'ALT', keyEn: 'ALT', keyru: 'ALT', keyRu: 'ALT' },
         {
-          code: 'SPACE',
-          keyen: 'SPACE',
-          keyEn: 'SPACE',
-          keyru: 'SPACE',
-          keyRu: 'SPACE',
+          code: 'AltLeft', keyen: 'Alt', keyEn: 'Alt', keyru: 'Alt', keyRu: 'Alt',
         },
-        { code: 'ALT', keyen: 'ALT', keyEn: 'ALT', keyru: 'ALT', keyRu: 'ALT' },
         {
-          code: 'CTRL',
-          keyen: 'CTRL',
-          keyEn: 'CTRL',
-          keyru: 'CTRL',
-          keyRu: 'CTRL',
+          code: 'Space',
+          keyen: 'Space',
+          keyEn: 'Space',
+          keyru: 'Space',
+          keyRu: 'Space',
         },
-        { code: '🡡', keyen: '🡡', keyEn: '🡡', keyru: '🡡', keyRu: '🡡' },
-        { code: '🡣', keyen: '🡣', keyEn: '🡣', keyru: '🡣', keyRu: '🡣' },
-        { code: '🡠', keyen: '🡠', keyEn: '🡠', keyru: '🡠', keyRu: '🡠' },
-        { code: '🡢', keyen: '🡢', keyEn: '🡢', keyru: '🡢', keyRu: '🡢' },
+        {
+          code: 'AltRight', keyen: 'Alt', keyEn: 'Alt', keyru: 'Alt', keyRu: 'Alt',
+        },
+        {
+          code: 'ArrowLeft', keyen: '🡠', keyEn: '🡠', keyru: '🡠', keyRu: '🡠',
+        },
+        {
+          code: 'ArrowDown', keyen: '🡣', keyEn: '🡣', keyru: '🡣', keyRu: '🡣',
+        },
+        {
+          code: 'ArrowRight', keyen: '🡢', keyEn: '🡢', keyru: '🡢', keyRu: '🡢',
+        },
+        {
+          code: 'ControlRight',
+          keyen: 'Ctrl',
+          keyEn: 'Ctrl',
+          keyru: 'Ctrl',
+          keyRu: 'Ctrl',
+        },
       ]];
   }
-
-
 }
 
 const btns = new KeyButtons();
-console.log(btns);
+let arrOfBtns = [];
+let listOfCodes = btns.keycodes.flat();
 
 function createLayout() {
   MAIN.classList.add('main');
   BODY.append(MAIN);
   SECTION.classList.add('section');
   MAIN.append(SECTION);
+  TITLE.classList.add('section__title');
+  TITLE.innerText = 'Virtual keyboard';
   TEXT_AREA.classList.add('textarea');
+  // TEXT_AREA.setAttribute()
+  SECTION.append(TITLE);
   SECTION.append(TEXT_AREA);
   KEY_BOARD.classList.add('keyboard');
   SECTION.append(KEY_BOARD);
+  INFO.classList.add('info');
+  INFO.innerText = 'Клавиатура создана в операционной системе Windows Для переключения языка комбинация: левыe ctrl + alt'
+  SECTION.append(INFO);
 }
 
 function createKeyBoard() {
-  for(let count = 0; count <= 4; count++) {
+  for (let count = 0; count <= 4; count++) {
     const ROW = document.createElement('div');
     ROW.classList.add('keyboard__row', `row_${count + 1}`);
     KEY_BOARD.append(ROW);
@@ -228,7 +345,70 @@ function createKeyBoard() {
     for (let i = 0; i < btns.keycodes[count].length; i++) {
       const BUTTON = document.createElement('div');
       BUTTON.classList.add('keyboard__btn');
-      BUTTON.innerText = btns.keycodes[count][i].keyEn;
+      BUTTON.innerText = btns.keycodes[count][i].keyen;
+      BUTTON.setAttribute('id', `${btns.keycodes[count][i].code}`)
+
+      switch (btns.keycodes[count][i].code) {
+        case 'Backspace':
+          BUTTON.classList.add('backspace');
+          break;
+        case 'Delete':
+            BUTTON.classList.add('del');
+            break;
+        case 'Tab':
+          BUTTON.classList.add('tab');
+          break;
+        case 'CapsLock':
+          BUTTON.classList.add('caps');
+          BUTTON.classList.add('hotkey');
+          break;
+        case 'Enter':
+          BUTTON.classList.add('enter');
+          break;
+        case 'ShiftLeft':
+          BUTTON.classList.add('shift');
+          BUTTON.classList.add('hotkey');
+          break;
+        case 'ShiftRight':
+          BUTTON.classList.add('shift');
+          BUTTON.classList.add('hotkey');
+          break;
+        case 'ControlLeft':
+          BUTTON.classList.add('ctrl');
+          BUTTON.classList.add('hotkey');
+          break;
+        case 'ControlRight':
+            BUTTON.classList.add('ctrl');
+            BUTTON.classList.add('hotkey');
+            break;
+        case 'MetaLeft':
+          BUTTON.classList.add('win');
+          BUTTON.classList.add('hotkey');
+          break;
+        case 'AltLeft':
+          BUTTON.classList.add('alt');
+          BUTTON.classList.add('hotkey');
+          break;
+        case 'AltRight':
+          BUTTON.classList.add('alt');
+          BUTTON.classList.add('hotkey');
+          break;
+        case 'Space':
+          BUTTON.classList.add('space');
+          break;
+        //   case 'ArrowUp':
+        //   BUTTON.classList.add('hotkey');
+        //   break;
+        // case 'ArrowLeft':
+        //   BUTTON.classList.add('hotkey');
+        //   break;
+        // case 'ArrowDown':
+        //   BUTTON.classList.add('hotkey');
+        //   break;
+        // case 'ArrowRight':
+        //   BUTTON.classList.add('hotkey');
+        //   break;
+      }
       ROW.append(BUTTON);
     }
   }
@@ -236,3 +416,133 @@ function createKeyBoard() {
 
 createLayout();
 createKeyBoard();
+
+
+KEY_BOARD.addEventListener('mousedown', (e) => {
+  if (e.target.classList.contains('keyboard__btn') && !e.target.classList.contains('caps')) {
+    e.target.classList.add('active');
+    if (e.target.classList.contains('tab')) {
+      TEXT_AREA.value += '    ';
+    } else if (e.target.classList.contains('space')) {
+      TEXT_AREA.value += ' ';
+    } else if (e.target.classList.contains('backspace')) {
+      TEXT_AREA.value = TEXT_AREA.value.slice(0, TEXT_AREA.value.length - 1);
+    } else if (e.target.classList.contains('del')) {
+      TEXT_AREA.value = TEXT_AREA.value.slice(0, TEXT_AREA.value.length - 1);
+    } else if (e.target.classList.contains('enter')) {
+      TEXT_AREA.value += '\n';
+    } else if (e.target.id === 'ShiftRight' || e.target.id === 'ShiftLeft') {
+      // arrOfBtns.forEach((btn) => {
+      //   listOfCodes.forEach((item) => {
+      //     if(item.code === btn.id) {
+      //       if (document.querySelector('.caps').classList.contains('active')) {
+      //         btn.innerText = item.keyEn.toLowerCase();
+      //       } else {
+      //         btn.innerText = item.keyEn;
+      //       }
+      //     }
+      //   })
+      // })
+    } else if (e.target.classList.contains('hotkey')) {
+      TEXT_AREA.value = TEXT_AREA.value;
+    } else {
+      TEXT_AREA.value += `${e.target.innerText}`;
+    }
+  } else if(e.target.classList.contains('caps')) {
+    e.target.classList.toggle('active');
+      // if (e.target.classList.contains('active')) {
+        // arrOfBtns.forEach((btn) => btn.innerText = )
+      // }
+  }
+});
+
+KEY_BOARD.addEventListener('mouseup', (e) => {
+  if (e.target.classList.contains('keyboard__btn') && !e.target.classList.contains('caps')) {
+    e.target.classList.remove('active');
+  }
+  if (e.target.id === 'ShiftRight' || e.target.id === 'ShiftLeft') {
+    arrOfBtns.forEach((btn) => {
+      listOfCodes.forEach((item) => {
+        if(item.code === btn.id) {
+          btn.innerText = item.keyen;
+        }
+      })
+    })
+  }
+});
+
+document.querySelectorAll('.keyboard__row').forEach((row) => {
+  arrOfBtns.push(...Array.from(row.children))
+})
+
+  let lang = 'en';
+
+document.addEventListener('keydown', (e) => {
+  e.preventDefault();
+  arrOfBtns.find((btn) => btn.getAttribute('id') === e.code && e.code !== 'CapsLock')
+  .classList.add('active');
+  // document.querySelectorAll('.keyboard__btn').forEach((btn) => {
+  //   // console.log(btn.id)
+  //   if(btn.classList.contains('caps')) {
+  //     btn.classList.toggle('active');
+  //   } else if(btn.getAttribute('id') === e.code) {
+  //     btn.classList.add('active');
+  //   }
+  // })
+    if (e.code === 'Tab') {
+      TEXT_AREA.value += '    ';
+    } else if (e.code === 'Space') {
+      TEXT_AREA.value += ' ';
+    } else if (e.code === 'Backspace') {
+      TEXT_AREA.value = TEXT_AREA.value.slice(0, TEXT_AREA.value.length - 1);
+    } else if (e.code === 'Enter') {
+      TEXT_AREA.value += '\n';
+    } else if(!document.getElementById(`${e.code}`).classList.contains('hotkey')) {
+      TEXT_AREA.value += `${document.getElementById(`${e.code}`).innerText}`;
+    } else if (e.code === 'ShiftRight' || e.code === 'ShiftLeft') {
+      arrOfBtns.forEach((btn) => {
+        listOfCodes.forEach((item) => {
+          if(item.code === btn.id) {
+            btn.innerText = item.keyEn;
+          }
+        })
+      })
+    } else if(e.code === 'CapsLock') {
+        // document.querySelector('.caps').classList.toggle('active');
+        console.log(e.code);
+    } else if (e.code === 'ControlLeft' && e.code === 'AltLeft') {
+      lang = 'ru';
+      console.log(lang);
+    }
+
+});
+
+document.addEventListener('keyup', (e) => {
+  e.preventDefault();
+  arrOfBtns.find((btn) => btn.getAttribute('id') === e.code)
+  .classList.remove('active');
+  // document.querySelectorAll('.keyboard__btn').forEach((btn) => {
+  //   if(!btn.classList.contains('caps')) {
+  //     btn.classList.remove('active');
+  //   }
+  // })
+  if (e.code === 'ShiftRight' || e.code === 'ShiftLeft') {
+    arrOfBtns.forEach((btn) => {
+      listOfCodes.forEach((item) => {
+        if(item.code === btn.id) {
+          btn.innerText = item.keyen;
+        }
+      })
+    })
+  }
+})
+
+// console.log(arrOfBtns);
+// console.log(listOfCodes);
+
+
+// function changeLang () {
+
+//   const ROW = document.querySelector('.row_5');
+//   if(document.)
+// }
