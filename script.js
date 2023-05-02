@@ -6,6 +6,7 @@ const KEY_BOARD = document.createElement('div');
 const TITLE = document.createElement('h1');
 const INFO = document.createElement('p');
 
+
 class KeyButtons {
   constructor() {
     this.keylist = [
@@ -311,12 +312,30 @@ class KeyButtons {
           keyRu: 'Ctrl',
         },
       ]];
+
+      this.hotkeys = [
+        'Tab',
+        'Backspace',
+        'CapsLock',
+        'Enter',
+        'ShiftRight',
+        'ShiftLeft',
+        'ControlLeft',
+        'MetaLeft',
+        'AltLeft',
+        'Space',
+        'AltRight',
+        'Delete',
+        'ControlRight'
+      ];
   }
 }
 
 const btns = new KeyButtons();
 let arrOfBtns = [];
 let listOfCodes = btns.keycodes.flat();
+let lang = 'en';
+
 
 function createLayout() {
   MAIN.classList.add('main');
@@ -326,7 +345,6 @@ function createLayout() {
   TITLE.classList.add('section__title');
   TITLE.innerText = 'Virtual keyboard';
   TEXT_AREA.classList.add('textarea');
-  // TEXT_AREA.setAttribute()
   SECTION.append(TITLE);
   SECTION.append(TEXT_AREA);
   KEY_BOARD.classList.add('keyboard');
@@ -345,7 +363,7 @@ function createKeyBoard() {
     for (let i = 0; i < btns.keycodes[count].length; i++) {
       const BUTTON = document.createElement('div');
       BUTTON.classList.add('keyboard__btn');
-      BUTTON.innerText = btns.keycodes[count][i].keyen;
+      BUTTON.innerText = btns.keycodes[count][i][`key${lang}`];
       BUTTON.setAttribute('id', `${btns.keycodes[count][i].code}`)
 
       switch (btns.keycodes[count][i].code) {
@@ -374,11 +392,11 @@ function createKeyBoard() {
           BUTTON.classList.add('hotkey');
           break;
         case 'ControlLeft':
-          BUTTON.classList.add('ctrl');
+          BUTTON.classList.add('ctrl_left');
           BUTTON.classList.add('hotkey');
           break;
         case 'ControlRight':
-            BUTTON.classList.add('ctrl');
+            BUTTON.classList.add('ctrl_right');
             BUTTON.classList.add('hotkey');
             break;
         case 'MetaLeft':
@@ -386,28 +404,16 @@ function createKeyBoard() {
           BUTTON.classList.add('hotkey');
           break;
         case 'AltLeft':
-          BUTTON.classList.add('alt');
+          BUTTON.classList.add('alt_left');
           BUTTON.classList.add('hotkey');
           break;
         case 'AltRight':
-          BUTTON.classList.add('alt');
+          BUTTON.classList.add('alt_right');
           BUTTON.classList.add('hotkey');
           break;
         case 'Space':
           BUTTON.classList.add('space');
           break;
-        //   case 'ArrowUp':
-        //   BUTTON.classList.add('hotkey');
-        //   break;
-        // case 'ArrowLeft':
-        //   BUTTON.classList.add('hotkey');
-        //   break;
-        // case 'ArrowDown':
-        //   BUTTON.classList.add('hotkey');
-        //   break;
-        // case 'ArrowRight':
-        //   BUTTON.classList.add('hotkey');
-        //   break;
       }
       ROW.append(BUTTON);
     }
@@ -432,27 +438,48 @@ KEY_BOARD.addEventListener('mousedown', (e) => {
     } else if (e.target.classList.contains('enter')) {
       TEXT_AREA.value += '\n';
     } else if (e.target.id === 'ShiftRight' || e.target.id === 'ShiftLeft') {
-      // arrOfBtns.forEach((btn) => {
-      //   listOfCodes.forEach((item) => {
-      //     if(item.code === btn.id) {
-      //       if (document.querySelector('.caps').classList.contains('active')) {
-      //         btn.innerText = item.keyEn.toLowerCase();
-      //       } else {
-      //         btn.innerText = item.keyEn;
-      //       }
-      //     }
-      //   })
-      // })
+      arrOfBtns.forEach((btn) => {
+        listOfCodes.forEach((item) => {
+          if(item.code === btn.id) {
+            btn.innerText = item[`key${lang[0].toLocaleUpperCase() + lang[1]}`];
+            if(document.querySelector('.caps').classList.contains('active')) {
+              if(!btns.hotkeys.includes(btn.id)) {
+                btn.innerText = btn.innerText.toLowerCase();
+              }
+            }
+          }
+        })
+      })
     } else if (e.target.classList.contains('hotkey')) {
       TEXT_AREA.value = TEXT_AREA.value;
     } else {
       TEXT_AREA.value += `${e.target.innerText}`;
     }
   } else if(e.target.classList.contains('caps')) {
-    e.target.classList.toggle('active');
-      // if (e.target.classList.contains('active')) {
-        // arrOfBtns.forEach((btn) => btn.innerText = )
-      // }
+    document.querySelector('.caps').classList.toggle('active');
+    if(document.querySelector('.caps').classList.contains('active')) {
+      document.querySelectorAll('.keyboard__btn').forEach((btn) => {
+        if(!btns.hotkeys.includes(btn.id)) {
+          btn.innerText = btn.innerText.toUpperCase();
+        }
+        if(document.querySelector('.shift').classList.contains('active')) {
+          if(!btns.hotkeys.includes(btn.id)) {
+            btn.innerText = btn.innerText.toLowerCase();
+          }
+        }
+      })
+    } else {
+      document.querySelectorAll('.keyboard__btn').forEach((btn) => {
+        if(!btns.hotkeys.includes(btn.id)) {
+          btn.innerText = btn.innerText.toLowerCase();
+        }
+        if(document.querySelector('.shift').classList.contains('active')) {
+          if(!btns.hotkeys.includes(btn.id)) {
+            btn.innerText = btn.innerText.toUpperCase();
+          }
+        }
+      })
+    }
   }
 });
 
@@ -464,7 +491,12 @@ KEY_BOARD.addEventListener('mouseup', (e) => {
     arrOfBtns.forEach((btn) => {
       listOfCodes.forEach((item) => {
         if(item.code === btn.id) {
-          btn.innerText = item.keyen;
+          btn.innerText = item[`key${lang}`];
+          if (document.querySelector('.caps').classList.contains('active')) {
+            if(!btns.hotkeys.includes(btn.id)) {
+              btn.innerText = btn.innerText.toUpperCase();
+            }
+          }
         }
       })
     })
@@ -475,25 +507,20 @@ document.querySelectorAll('.keyboard__row').forEach((row) => {
   arrOfBtns.push(...Array.from(row.children))
 })
 
-  let lang = 'en';
+
 
 document.addEventListener('keydown', (e) => {
   e.preventDefault();
-  arrOfBtns.find((btn) => btn.getAttribute('id') === e.code && e.code !== 'CapsLock')
-  .classList.add('active');
-  // document.querySelectorAll('.keyboard__btn').forEach((btn) => {
-  //   // console.log(btn.id)
-  //   if(btn.classList.contains('caps')) {
-  //     btn.classList.toggle('active');
-  //   } else if(btn.getAttribute('id') === e.code) {
-  //     btn.classList.add('active');
-  //   }
-  // })
+  if(e.code !== 'CapsLock') {
+    document.querySelector(`#${e.code}`).classList.add('active');
+  }
     if (e.code === 'Tab') {
       TEXT_AREA.value += '    ';
     } else if (e.code === 'Space') {
       TEXT_AREA.value += ' ';
     } else if (e.code === 'Backspace') {
+      TEXT_AREA.value = TEXT_AREA.value.slice(0, TEXT_AREA.value.length - 1);
+    } else if (e.code === 'Delete') {
       TEXT_AREA.value = TEXT_AREA.value.slice(0, TEXT_AREA.value.length - 1);
     } else if (e.code === 'Enter') {
       TEXT_AREA.value += '\n';
@@ -503,46 +530,87 @@ document.addEventListener('keydown', (e) => {
       arrOfBtns.forEach((btn) => {
         listOfCodes.forEach((item) => {
           if(item.code === btn.id) {
-            btn.innerText = item.keyEn;
+            btn.innerText = item[`key${lang[0].toLocaleUpperCase() + lang[1]}`];
+            if(document.querySelector('.caps').classList.contains('active')) {
+              if(!btns.hotkeys.includes(btn.id)) {
+                btn.innerText = btn.innerText.toLowerCase();
+              }
+            }
           }
         })
       })
-    } else if(e.code === 'CapsLock') {
-        // document.querySelector('.caps').classList.toggle('active');
-        console.log(e.code);
-    } else if (e.code === 'ControlLeft' && e.code === 'AltLeft') {
-      lang = 'ru';
-      console.log(lang);
+    } else if (e.code === 'CapsLock') {
+        document.querySelector('.caps').classList.toggle('active');
+        if(document.querySelector('.caps').classList.contains('active')) {
+          document.querySelectorAll('.keyboard__btn').forEach((btn) => {
+            if(!btns.hotkeys.includes(btn.id)) {
+              btn.innerText = btn.innerText.toUpperCase();
+            }
+            if(document.querySelector('.shift').classList.contains('active')) {
+              if(!btns.hotkeys.includes(btn.id)) {
+                btn.innerText = btn.innerText.toLowerCase();
+              }
+            }
+          })
+        } else {
+          document.querySelectorAll('.keyboard__btn').forEach((btn) => {
+            if(!btns.hotkeys.includes(btn.id)) {
+              btn.innerText = btn.innerText.toLowerCase();
+            }
+            if(document.querySelector('.shift').classList.contains('active')) {
+              if(!btns.hotkeys.includes(btn.id)) {
+                btn.innerText = btn.innerText.toUpperCase();
+              }
+            }
+          })
+        }
+    } else if (e.code === 'ControlLeft' && document.querySelector('.alt_left')
+    .classList.contains('active')) {
+      changeLang();
+    } else if (e.code === 'AltLeft' && document.querySelector('.ctrl_left')
+    .classList.contains('active')) {
+      changeLang();
     }
-
 });
 
 document.addEventListener('keyup', (e) => {
   e.preventDefault();
-  arrOfBtns.find((btn) => btn.getAttribute('id') === e.code)
-  .classList.remove('active');
-  // document.querySelectorAll('.keyboard__btn').forEach((btn) => {
-  //   if(!btn.classList.contains('caps')) {
-  //     btn.classList.remove('active');
-  //   }
-  // })
+  if (e.code !== 'CapsLock') {
+    document.querySelector(`#${e.code}`).classList.remove('active');
+  }
   if (e.code === 'ShiftRight' || e.code === 'ShiftLeft') {
     arrOfBtns.forEach((btn) => {
       listOfCodes.forEach((item) => {
         if(item.code === btn.id) {
-          btn.innerText = item.keyen;
+          btn.innerText = item[`key${lang}`];
+          if (document.querySelector('.caps').classList.contains('active')) {
+            if(!btns.hotkeys.includes(btn.id)) {
+              btn.innerText = btn.innerText.toUpperCase();
+            }
+          }
         }
       })
     })
   }
 })
 
-// console.log(arrOfBtns);
-// console.log(listOfCodes);
 
 
-// function changeLang () {
+function changeLang() {
+  if (lang === 'en') {
+    lang = 'ru';
+  } else lang = 'en';
 
-//   const ROW = document.querySelector('.row_5');
-//   if(document.)
-// }
+  arrOfBtns.forEach((btn) => {
+    btns.keycodes.forEach((row) => {
+      row.forEach((item) => {
+        if(item.code === btn.id) {
+          btn.innerText = item[`key${lang}`];
+        }
+      })
+    })
+  })
+}
+
+
+
