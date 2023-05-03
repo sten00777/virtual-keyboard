@@ -11,7 +11,5 @@ module.exports = {
   },
   rules: {
     'no-console': 'off',
-    eslint,
-    'linebreak-style': ["error", "unix"],
   },
 };
